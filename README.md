@@ -36,8 +36,27 @@ I selected a suite of CNNs known for their robust performance in image classific
 - EfficientNet-B0 (offers a good trade-off between efficiency and accuracy)
 - DenseNet121 (known for its efficiency in terms of parameters and depth)
 
-## Hyperparameters and Model Configuration
-Despite experimenting with various hyperparameters, it became evident that the default settings of these well-established models were most conducive to high performance. Deviating from these hyperparameters typically led to overfitting or underfitting, underscoring the sophistication of the pre-trained models.
+## Training Insights and Evaluation Findings
+
+Throughout the development of this project, numerous experiments were conducted to fine-tune model performance. Here are some key observations and outcomes from the training and evaluation phases:
+
+### Batch Size Exploration
+Initial experiments with batch sizes varied from 20, 3, 64, up to 128. While some models exhibited a slight preference for a batch size of 64, others achieved comparable results with smaller batch sizes such as 20 or 32. The differences in performance metrics across these batch sizes were marginal, indicating a robustness to this parameter within the tested range.
+
+### Architecture Adjustments
+Attempts to modify the network architectures by unfreezing layers beyond the classification layer and introducing additional dense layers did not yield the anticipated improvements. Instead, these changes resulted in a noticeable drop in accuracy and increased the computational overhead without commensurate benefits.
+
+### Image Preprocessing Variations
+Converting images to grayscale as a preprocessing step led to a substantial decrease in accuracy. This suggests that color information within the X-ray images may play a crucial role in model performance, which grayscale conversion omits.
+
+### Hyperparameter Optimization
+Deviation from default hyperparameter settings introduced volatility to model training, with some instances of underfitting or overfitting. Adjustments that proved beneficial included increasing the dropout rate and implementing a `ReduceLROnPlateau` learning rate scheduler. These changes contributed to more stable training epochs and a minimization of l Default settings of these well-established models were most conducive to high performance. Deviating from these hyperparameters typically led to overfitting or underfitting, underscoring the sophistication of the pre-trained models.oss over time.
+
+### Optimizer Selection
+The project commenced with the use of the SGD optimizer, later transitioning to Adam, which resulted in improved model performance. This suggests that the adaptive learning rate feature of Adam was better suited to the convergence characteristics of our models.
+
+### Future Directions
+Despite the significant speed gains achieved by utilizing CUDA and GPU acceleration, comprehensive exploration of the model space is time-intensive. Future work could involve a more extensive grid search over hyperparameters, incorporating different optimizer strategies, or experimenting with novel neural network architectures. Continual refinement and the potential incorporation of ensemble techniques may yield further improvements in model robust pre-trained models.
 
 ## Performance Evaluation and Insights
 The evaluation focused on the models' ability to detect COVID-19 accurately, with a particular emphasis on minimizing false negatives due to their grave implications in a medical context.
