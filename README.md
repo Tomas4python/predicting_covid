@@ -71,7 +71,7 @@ sophistication of the pre-trained models.
 ### Optimizer Selection
 The project commenced with the use of the SGD optimizer, later transitioning to Adam, which resulted in improved
 model performance. This suggests that the adaptive learning rate feature of Adam was better suited to the convergence
-characteristics of our models.
+characteristics of models.
 
 ### Future Directions
 Despite the significant speed gains achieved by utilizing CUDA and GPU acceleration, comprehensive exploration
